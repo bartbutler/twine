@@ -42,7 +42,7 @@ module Twine
         end
       end
 
-      def format_file(lang)
+      def format_file(lang, encoding = nil)
         result = super
         return result unless result
         "{\n#{super}\n}\n"

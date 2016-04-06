@@ -62,7 +62,7 @@ module Twine
         end
       end
 
-      def format_file(lang)
+      def format_file(lang, encoding = nil)
         @default_lang = @twine_file.language_codes[0]
         result = super
         @default_lang = nil

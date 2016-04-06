@@ -49,7 +49,7 @@ module Twine
       lang = @options[:languages][0] if @options[:languages]
 
       formatter, lang = prepare_read_write(@options[:output_path], lang)
-      output = formatter.format_file(lang)
+      output = formatter.format_file(lang, encoding)
 
       raise Twine::Error.new "Nothing to generate! The resulting file would not contain any translations." unless output
 
@@ -83,7 +83,7 @@ module Twine
 
           file_path = File.join(output_path, file_name)
 
-          output = formatter.format_file(lang)
+          output = formatter.format_file(lang, encoding)
           unless output
             Twine::stderr.puts "Skipping file at path #{file_path} since it would not contain any translations."
             next
@@ -105,7 +105,7 @@ module Twine
           language_found = true
 
           file_path = File.join(output_path, file_name)
-          output = formatter.format_file(lang)
+          output = formatter.format_file(lang, encoding)
           unless output
             Twine::stderr.puts "Skipping file at path #{file_path} since it would not contain any translations."
             next
@@ -171,7 +171,7 @@ module Twine
               temp_path = File.join(temp_dir, file_name)
               zip_path = File.join('Locales', file_name)
 
-              output = formatter.format_file(lang)
+              output = formatter.format_file(lang, encoding)
               unless output
                 Twine::stderr.puts "Skipping file #{file_name} since it would not contain any translations."
                 next
